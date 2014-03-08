@@ -7,13 +7,13 @@ var Schema = require('mongoose').Schema;
  * The article schema.
  */
 var PostSchema = new Schema({
-  type: { type: Number, 'default': 0},
+  type: {type: Number, 'default': 0},
   authorId: String,
-  catalogId: String,
+  catalogId: {type: String, ref: 'catalog'},
   tags: [String],
   title: Number,
   content: String,
-  date: { type: Date, 'default': Date.now}
+  date: {type: Date, 'default': Date.now}
 });
 
 var statics = PostSchema.statics;
