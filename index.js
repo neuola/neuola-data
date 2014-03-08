@@ -1,3 +1,6 @@
+/*jslint eqeq: true, indent: 2, node: true, plusplus: true, regexp: true, unparam: true, vars: true, nomen: true */
+'use strict';
+
 /*!
 The data layer for Neuola.
 ===========================
@@ -36,7 +39,7 @@ module.exports = function (uri, config) {
 };
 
 // The article model, belonged to one or more catalog.
-module.exports.Article = model('article');
+module.exports.Article = model('post');
 
 // The catalog model, containing articles.
 module.exports.Catalog = model('catalog');
