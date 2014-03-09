@@ -13,13 +13,6 @@ This is the entrance of the module.
 
 var mongoose = require('mongoose');
 
-// Define the model based on name convention.
-function defineModel(name) {
-  var schema = require('./model/' + name);
-  exports[name] = mongoose.model(name, schema);
-  return exports[name];
-}
-
 /**
  * The exported configuration function. It's a wrapper around mongoose.connect() but the settings can be written in a parameter, like
  *
@@ -38,6 +31,13 @@ module.exports = function (uri, config) {
   }
   mongoose.connect(uri, config);
 };
+
+// Define the model based on name convention.
+function defineModel(name) {
+  var schema = require('./model/' + name);
+  module.exports[name] = mongoose.model(name, schema);
+  return module.exports[name];
+}
 
 // The article model, belonged to one or more catalog.
 defineModel('Post');
