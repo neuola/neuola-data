@@ -11,7 +11,7 @@ var messageSchema = new mongoose.Schema({
   to: String,
   title: String,
   body: String,
-  date: Date,
+  date: {type: Date, 'default': Date.now},
   read: Boolean
 });
 
