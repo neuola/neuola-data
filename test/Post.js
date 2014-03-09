@@ -13,7 +13,8 @@ describe('Post', function () {
     var post = new model.Post({
       authorId: 'tester',
       title: 'Hello',
-      content: 'world!'
+      content: 'world!',
+      catalog: 'greet'
     });
     post.save(function (err, doc) {
       if (err) {
@@ -32,6 +33,19 @@ describe('Post', function () {
       }
       assert.ok(post);
       assert.equal('tester', post.authorId);
+      done();
+    });
+  });
+  
+  it('#catalog', function (done) {
+    var q = model.Post.findOne({authorId: 'tester'});
+    q.populate('catalog');
+    q.exec(function (err, post) {
+      if (err) {
+        throw err;
+      }
+      console.log(post.catalog);
+      assert.ok(typeof post.catalog == 'object');
       done();
     });
   });
