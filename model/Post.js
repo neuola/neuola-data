@@ -11,7 +11,7 @@ var PostSchema = new Schema({
   authorId: String,
   catalogId: {type: String, ref: 'Catalog'},
   tags: [String],
-  title: Number,
+  title: String,
   content: String,
   date: {type: Date, 'default': Date.now}
 });
