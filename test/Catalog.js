@@ -11,7 +11,7 @@ describe('Catalog', function () {
 
   it('#save', function (done) {
     var catalog = new model.Catalog({
-      id: 'hello',
+      _id: 'hello',
       name: 'Greeting Topic',
       description: 'The topic to discuss how to greet.'
 
@@ -26,7 +26,7 @@ describe('Catalog', function () {
   });
 
   it('.findOne', function (done) {
-    var q = model.Catalog.findOne({id: 'hello'});
+    var q = model.Catalog.findOne({_id: 'hello'});
     q.exec(function (err, catalog) {
       if (err) {
         throw err;

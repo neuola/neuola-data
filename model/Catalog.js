@@ -6,17 +6,15 @@ var Schema = require('mongoose').Schema;
 var catalogSchema = new Schema({
   name: String,
   description: String,
-  id: String,
+  _id: String,
   modified: { type: Date, 'default': Date.now }
 });
-
-catalogSchema.index({ id: 1});
 
 var statics = catalogSchema.statics;
 var methods = catalogSchema.methods;
 
 methods.listLatestPosts = function (param, cb) {
-  var q = this.model('Post').find({ catalogId: this.id});
+  var q = this.model('Post').find({ catalog: this._id});
   if (param) {
     if (param.start) {
       q.skip(param.start);

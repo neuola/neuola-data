@@ -8,8 +8,8 @@ var Schema = require('mongoose').Schema;
  */
 var PostSchema = new Schema({
   type: {type: Number, 'default': 0},
-  authorId: String,
-  catalogId: {type: String, ref: 'Catalog'},
+  author: String,
+  catalog: {type: String, ref: 'Catalog'},
   tags: [String],
   title: String,
   content: String,
