@@ -36,4 +36,17 @@ describe('Catalog', function () {
       done();
     });
   });
+  
+  it('#listLatestPosts', function (done) {
+    var q = model.Catalog.findOne({_id: 'hello'});
+    q.exec().then(function (catalog) {
+      return catalog.listLatestPosts({
+        start: 0
+      }).exec();
+    }).then(function (posts) {
+      done();
+    }, function (err) {
+      throw err;
+    });
+  });
 });
