@@ -16,7 +16,7 @@ var statics = catalogSchema.statics;
 var methods = catalogSchema.methods;
 
 methods.listLatestPosts = function (param, cb) {
-  var q = this.model('post').find({ catalogId: this.id});
+  var q = this.model('Post').find({ catalogId: this.id});
   if (param) {
     if (param.start) {
       q.skip(param.start);

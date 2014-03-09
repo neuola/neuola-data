@@ -9,7 +9,7 @@ var Schema = require('mongoose').Schema;
 var PostSchema = new Schema({
   type: {type: Number, 'default': 0},
   authorId: String,
-  catalogId: {type: String, ref: 'catalog'},
+  catalogId: {type: String, ref: 'Catalog'},
   tags: [String],
   title: Number,
   content: String,

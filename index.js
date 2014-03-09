@@ -13,10 +13,11 @@ This is the entrance of the module.
 
 var mongoose = require('mongoose');
 
-// Create the model based on name convention.
-function model(name) {
+// Define the model based on name convention.
+function defineModel(name) {
   var schema = require('./model/' + name);
-  return mongoose.model(name, schema);
+  exports[name] = mongoose.model(name, schema);
+  return exports[name];
 }
 
 /**
@@ -39,10 +40,10 @@ module.exports = function (uri, config) {
 };
 
 // The article model, belonged to one or more catalog.
-module.exports.Article = model('post');
+defineModel('Post');
 
 // The catalog model, containing articles.
-module.exports.Catalog = model('catalog');
+defineModel('Catalog');
 
 // The message model.
-module.exports.Message = model('message');
+defineModel('Message');
