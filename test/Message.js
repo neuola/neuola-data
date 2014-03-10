@@ -36,4 +36,34 @@ describe('Message', function () {
       done();
     });
   });
+
+  it('.listLatestMessages()', function (done) {
+    var q = model.Message.listLatestMessages('Tester', 'All');
+    q.exec().then(function (messages) {
+      assert.ok(messages);
+      done();
+    }, function (err) {
+      throw err;
+    });
+  });
+
+  it('.listByReceiver()', function (done) {
+    var q = model.Message.listByReceiver('All');
+    q.exec().then(function (messages) {
+      assert.ok(messages);
+      done();
+    }, function (err) {
+      throw err;
+    });
+  });
+
+  it('.listBySender()', function (done) {
+    var q = model.Message.listBySender('Tester');
+    q.exec().then(function (messages) {
+      assert.ok(messages);
+      done();
+    }, function (err) {
+      throw err;
+    });
+  });
 });

@@ -20,8 +20,8 @@ messageSchema.index({ from: 1, to: 1 });
 
 var statics = messageSchema.statics;
 
-statics.listLatestMessages = function (param, cb) {
-  var q = this.find({ from: param.from, to: param.to });
+statics.listLatestMessages = function (from, to, param, cb) {
+  var q = this.find({ from: from, to: to });
   if (param) {
     if (param.start) {
       q.skip(param.start);
@@ -30,7 +30,7 @@ statics.listLatestMessages = function (param, cb) {
       q.limit(param.limit);
     }
   }
-  q.sort({ date: 'desc'});
+  q.sort({date: 'desc'});
   if (cb) {
     return q.exec(cb);
   } else {
@@ -57,7 +57,7 @@ statics.listBySender = function (from, param, cb) {
   }
 };
 
-statics.listByReciever = function (to, param, cb) {
+statics.listByReceiver = function (to, param, cb) {
   if (!param) {
     param = {start: 0};
   }
