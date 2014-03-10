@@ -9,7 +9,7 @@ var os = require('os');
 
 describe('Message', function () {
 
-  it('#save', function (done) {
+  it('#save()', function (done) {
     var msg = new model.Message({
       from: 'Tester',
       to: 'All',
@@ -25,7 +25,7 @@ describe('Message', function () {
     });
   });
 
-  it('.findOne', function (done) {
+  it('.findOne()', function (done) {
     var q = model.Message.findOne({to: 'All'});
     q.exec(function (err, msg) {
       if (err) {

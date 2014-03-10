@@ -9,7 +9,7 @@ var os = require('os');
 
 describe('Post', function () {
 
-  it('#save', function (done) {
+  it('#save()', function (done) {
     var post = new model.Post({
       author: 'tester',
       title: 'Hello',
@@ -25,7 +25,7 @@ describe('Post', function () {
     });
   });
 
-  it('.findOne', function (done) {
+  it('.findOne()', function (done) {
     var q = model.Post.findOne({author: 'tester'});
     q.exec(function (err, post) {
       if (err) {

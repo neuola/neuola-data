@@ -9,7 +9,7 @@ var os = require('os');
 
 describe('Catalog', function () {
 
-  it('#save', function (done) {
+  it('#save()', function (done) {
     var catalog = new model.Catalog({
       _id: 'hello',
       name: 'Greeting Topic',
@@ -25,7 +25,7 @@ describe('Catalog', function () {
     });
   });
 
-  it('.findOne', function (done) {
+  it('.findOne()', function (done) {
     var q = model.Catalog.findOne({_id: 'hello'});
     q.exec(function (err, catalog) {
       if (err) {
@@ -37,7 +37,7 @@ describe('Catalog', function () {
     });
   });
   
-  it('#listLatestPosts', function (done) {
+  it('#listLatestPosts()', function (done) {
     var q = model.Catalog.findOne({_id: 'hello'});
     q.exec().then(function (catalog) {
       return catalog.listLatestPosts({
