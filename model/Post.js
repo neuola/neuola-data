@@ -18,8 +18,72 @@ var PostSchema = new Schema({
 
 var statics = PostSchema.statics;
 
+/**
+ * List latest posts by a range.
+ *
+ * @param {start: .., limit:..} structure.
+ * @param cb the optional callback
+ * @return mongoose#Query if cb is not specified.
+ */
 statics.listLatestPosts = function (param, cb) {
   var q = this.find();
+  if (param) {
+    if (param.start) {
+      q.skip(param.start);
+    }
+    if (param.limit) {
+      q.limit(param.limit);
+    }
+  }
+  q.sort({date: 'desc'});
+  if (cb) {
+    return q.exec(cb);
+  } else {
+    return q;
+  }
+};
+
+/**
+ * List posts by a specific tag(s).
+ *
+ * @param tags the list of tags or a single tag.
+ * @param param the {start: .., limit: ..} structure.
+ * @return mongoose#Query
+ */
+statics.listByTags = function (tags, param, cb) {
+  if (typeof tags == 'string') {
+    tags = [tags];
+  }
+  var q = this.find({tags: {$all: tags}});
+  if (param) {
+    if (param.start) {
+      q.skip(param.start);
+    }
+    if (param.limit) {
+      q.limit(param.limit);
+    }
+  }
+  q.sort({date: 'desc'});
+  if (cb) {
+    return q.exec(cb);
+  } else {
+    return q;
+  }
+};
+
+/**
+ * List posts of a user by a specific tag(s).
+ *
+ * @param user the name of user.
+ * @param tags the list of tags or a single tag.
+ * @param param the {start: .., limit: ..} structure.
+ * @return mongoose#Query
+ */
+statics.listByUserTags = function (user, tags, param, cb) {
+  if (typeof tags == 'string') {
+    tags = [tags];
+  }
+  var q = this.find({tags: {$all: tags}, author: user});
   if (param) {
     if (param.start) {
       q.skip(param.start);
