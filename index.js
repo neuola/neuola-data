@@ -65,3 +65,9 @@ defineModel('Catalog');
  * A message is defined like a email or letter. It contains a message between users.
  */
 defineModel('Message');
+
+/**
+ * The `User` model.
+ * A user is the people interacted with the system.
+ */
+defineModel('User');

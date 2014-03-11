@@ -7,8 +7,8 @@ var mongoose = require('mongoose');
  * The message schema.
  */
 var messageSchema = new mongoose.Schema({
-  from: String,
-  to: String,
+  from: {type: String, ref: 'User'},
+  to: {type: String, ref: 'User'},
   title: String,
   body: String,
   date: {type: Date, 'default': Date.now},

@@ -41,6 +41,9 @@ describe('Message', function () {
     var q = model.Message.listLatestMessages('Tester');
     q.exec().then(function (messages) {
       assert.ok(messages);
+      messages.forEach(function (msg) {
+        assert.ok('Tester' == msg.from || 'Tester' == msg.to);
+      });
       done();
     }, function (err) {
       throw err;
@@ -51,6 +54,9 @@ describe('Message', function () {
     var q = model.Message.listByReceiver('All');
     q.exec().then(function (messages) {
       assert.ok(messages);
+      messages.forEach(function (msg) {
+        assert.equal('All', msg.to);
+      });
       done();
     }, function (err) {
       throw err;
@@ -61,6 +67,9 @@ describe('Message', function () {
     var q = model.Message.listBySender('Tester');
     q.exec().then(function (messages) {
       assert.ok(messages);
+      messages.forEach(function (msg) {
+        assert.equal('Tester', msg.from);
+      });
       done();
     }, function (err) {
       throw err;
