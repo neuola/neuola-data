@@ -22,7 +22,10 @@ var mongoose = require('mongoose');
  *   pass: ...
  * }
  *
+ * @param uri the URI parameter which conforms mongoose.js' connect() method.
+ *
  * @see http://mongoosejs.com/docs/connections.html
+ * @return model itself.
  */
 function model(uri, config) {
   if (config) {
@@ -34,18 +37,31 @@ function model(uri, config) {
 }
 module.exports = model;
 
-// Define the model based on name convention.
+/**
+ * Define the model based on name convention.
+ *
+ * @param name the name of the model.
+ */
 function defineModel(name) {
   var schema = require('./model/' + name);
   model[name] = mongoose.model(name, schema);
   return model[name];
 }
 
-// The article model, belonged to one or more catalog.
+/**
+ * The `Post` model.
+ * Post is defined to represent many types, including Articles, Photos et al. A post belonged to one or more catalog. The type of post is defined via the type attribute.
+ */
 defineModel('Post');
 
-// The catalog model, containing articles.
+/**
+ * The `Catalog` model.
+ * A catalog manages one or more posts.
+ */
 defineModel('Catalog');
 
-// The message model.
+/**
+ * The `Message` model.
+ * A message is defined like a email or letter. It contains a message between users.
+ */
 defineModel('Message');

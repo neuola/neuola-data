@@ -20,6 +20,15 @@ messageSchema.index({ from: 1, to: 1 });
 
 var statics = messageSchema.statics;
 
+/**
+ * List the latest messages from a user, including `from` and `to`.
+ *
+ * @param user the user's name.
+ * @param param the {start:.., limit:..} structure.
+ * @param cb the optional callback.
+ *
+ * @return mongoose#Query if cb is not specified.
+ */
 statics.listLatestMessages = function (user, param, cb) {
   var q = this.find({$or: [{from: user}, {to: user}]});
   if (param) {
@@ -29,6 +38,9 @@ statics.listLatestMessages = function (user, param, cb) {
     if (param.limit) {
       q.limit(param.limit);
     }
+    if (param.query) {
+      q.find(param.query);
+    }
   }
   q.sort({date: 'desc'});
   if (cb) {
@@ -38,16 +50,29 @@ statics.listLatestMessages = function (user, param, cb) {
   }
 };
 
+/**
+ * List sender's latest messages.
+ *
+ * @param from the user's name.
+ * @param cb the optional callback.
+ *
+ * @return mongoose#Query if cb is not specified.
+ */
 statics.listBySender = function (from, param, cb) {
   if (!param) {
     param = { start: 0 };
   }
   var q = this.find({ from: from });
-  if (param.start) {
-    q.skip(param.start);
-  }
-  if (param.limit) {
-    q.limit(param.limit);
+  if (param) {
+    if (param.start) {
+      q.skip(param.start);
+    }
+    if (param.limit) {
+      q.limit(param.limit);
+    }
+    if (param.query) {
+      q.find(param.query);
+    }
   }
   q.sort({date: 'desc'});
   if (cb) {
@@ -57,6 +82,14 @@ statics.listBySender = function (from, param, cb) {
   }
 };
 
+/**
+ * List sender's latest messages.
+ *
+ * @param from the user's name.
+ * @param cb the optional callback.
+ *
+ * @return mongoose#Query if cb is not specified.
+ */
 statics.listByReceiver = function (to, param, cb) {
   if (!param) {
     param = {start: 0};
@@ -68,6 +101,9 @@ statics.listByReceiver = function (to, param, cb) {
     }
     if (param.limit) {
       q.limit(param.limit);
+    }
+    if (param.query) {
+      q.find(param.query);
     }
   }
   q.sort({date: 'desc'});
