@@ -9,7 +9,7 @@ The data structure here is derived partly from the work in the [old Neuola][], a
 
 The structure of the [Neuola Data][] Project is modeled after [Mongoose][], a ODM for MongoDB. The used schemas are settled in [model](model) folder.
 
-For more information about [Mongoose][], you can refer to the [wiki](/wiki) or its website.
+For more information about [Mongoose][], you can refer to the [wiki](https://github.com/neuola/neuola-data/wiki) or its website.
 
 [Neuola]: http://neuola.github.io/ "Project Neuola"
 [Neuola Data]: http://neuola.github.io/neuola-data "Project Neuola Data"
