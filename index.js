@@ -24,19 +24,21 @@ var mongoose = require('mongoose');
  *
  * @see http://mongoosejs.com/docs/connections.html
  */
-module.exports = function (uri, config) {
+function model(uri, config) {
   if (config) {
     config = uri;
     uri = config.uri;
   }
   mongoose.connect(uri, config);
-};
+  return model;
+}
+module.exports = model;
 
 // Define the model based on name convention.
 function defineModel(name) {
   var schema = require('./model/' + name);
-  module.exports[name] = mongoose.model(name, schema);
-  return module.exports[name];
+  model[name] = mongoose.model(name, schema);
+  return model[name];
 }
 
 // The article model, belonged to one or more catalog.
