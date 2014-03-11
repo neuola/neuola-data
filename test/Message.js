@@ -38,7 +38,7 @@ describe('Message', function () {
   });
 
   it('.listLatestMessages()', function (done) {
-    var q = model.Message.listLatestMessages('Tester', 'All');
+    var q = model.Message.listLatestMessages('Tester');
     q.exec().then(function (messages) {
       assert.ok(messages);
       done();

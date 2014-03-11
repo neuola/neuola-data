@@ -20,8 +20,8 @@ messageSchema.index({ from: 1, to: 1 });
 
 var statics = messageSchema.statics;
 
-statics.listLatestMessages = function (from, to, param, cb) {
-  var q = this.find({ from: from, to: to });
+statics.listLatestMessages = function (user, param, cb) {
+  var q = this.find({$or: [{from: user}, {to: user}]});
   if (param) {
     if (param.start) {
       q.skip(param.start);
