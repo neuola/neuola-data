@@ -1,7 +1,7 @@
 {
   "name": "neuola-data",
   "description": "An pluggable content management website, the data layer.",
-  "version": "1.0.0-pre",
+  "version": "0.2.1",
   "author": "Wang Zhi <yfwz100@yeah.net>",
   "keywords": ["neuola", "cms", "data"],
   "repository": "git://github.com/neuola/neuola-admin",
